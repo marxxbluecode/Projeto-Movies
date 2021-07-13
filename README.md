@@ -2,15 +2,9 @@
 
 This project is Cringe.
 
-# Se você gosta de Harry Potter vc é:
-
 ### `Cringe`
 
-# Tomar café da manhã?
-
-### `Cringy`
-
-**Note: Uma vez Cringe sempre Cringe**
+**Note: Nada não**
 
 ## Learn More
 

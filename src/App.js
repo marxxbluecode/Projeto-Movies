@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 
 import Movies from "./server/Movies"
 
-class MoviesApi extends Component{
-  
+class MARXFLIX extends Component{
+
   state = {
     movies: []
   }
@@ -16,14 +16,21 @@ class MoviesApi extends Component{
     const response = await Movies.get()
     console.log(response.data.results)
   }
-  
+  MoviesList = () => {
+    const films = ["F8", "jacaré", "Loki"];
+  }
+
   render(){
     return(
       <div>
-        <p>Colorado</p>
+        <ul> {this.state.movies.map((films) => 
+          <li>
+            {films}
+          </li>)}
+        </ul>
       </div>
     )
   }
 }
 
-export default MoviesApi;
+export default MARXFLIX;

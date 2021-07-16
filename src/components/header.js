@@ -3,35 +3,33 @@ import styled from "styled-components"
 import logo from "../images/M.png"
 import lupa from "../images/lupa.png"
 
-const Header_body = styled.div`
+const HeaderBody = styled.div`
     width: 100vw;
     margint-top: 0;
-    height: 6rem;
+    height: 4rem;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     background-color: #19222b;
     border-bottom: 0.1rem solid #676e76;
 `;
-const Box_icon = styled.div`
-    width: 35%;
+const BoxIcon = styled.div`
+    width: 25%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-direction: row;
-    margin-right: 10rem;
 `;
 const Title = styled.h2`
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #676e76;
-`;
-const Content = styled.h2`
-    &:hover ~ ${Title} {
-        color: white;
+    &:hover {
+        color: #a442ed;
         cursor: pointer;
-}
+        transform: scale(1.2);
+    }
 `;
-const Box_bar = styled.div`
+const BoxBar = styled.div`
     width: 50%;
     display: flex;
     align-items: center;
@@ -39,13 +37,13 @@ const Box_bar = styled.div`
     flex-direction: row;
 `;
 const Icon = styled.img`
-    width: 25%;
+    width: 20%;
     height:;
 `;
-const Search_bar = styled.input`
-    width: 60%;
-    height: 40px;
-    border-radius:5%/45%;
+const SearchBar = styled.input`
+    width: 70%;
+    height: 30px;
+    border-radius: 5%/70%;
     outline: none;
     color: #a442ed;
     padding: 1rem;
@@ -53,30 +51,31 @@ const Search_bar = styled.input`
    
 `;
 const Btn = styled.button`
-    width:40px;
-    height:40px;
-    border-radius:40px;
-    background-color: #a442ed;
-    color: white;
-    cursor: pointer;
-`
+    height: 30px;
+    width: 30px;
+    background-color:#a442ed;
+    border-radius: 100%;
+`;
+
 class Header extends Component{
 
     render(){
         return(
-            <Header_body>
-                <Box_icon>
+            <>
+            <HeaderBody>
+                <BoxIcon>
                 <Icon src={logo} alt="icon"/>
                 <Title>Movies</Title>
                 <Title>Series</Title>
                 <Title>Library</Title>
                 <Title>Watch List</Title>
-                </Box_icon>
-                <Box_bar>
-                <Search_bar  type='text' placeholder='search here'/> 
-                <Btn type="submit">A</Btn>
-                </Box_bar>
-            </Header_body>
+                </BoxIcon>
+                <BoxBar>
+                <SearchBar  type='text' placeholder='search here'/> 
+                <Btn>A</Btn>
+                </BoxBar>
+            </HeaderBody>
+            </>
         )
     }
 }

@@ -8,11 +8,12 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
-    color: #676e76;
+    color: #fff;
     
   }
   body {
     background-color: #19222b;
+    overflow-x: hidden
   }
 `;
 // hoover: #a442ed

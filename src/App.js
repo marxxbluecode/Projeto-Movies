@@ -6,12 +6,40 @@ import Series from './server/Series'
 import Header from './components/header'
 
 
-
 const Title = styled.h3`
   font-size: 2rem;
   color: #f5f9fc;
 `;
 
+const Container = styled.main`
+  width: 80%;
+  margin: 0% 0% 0% 8%;
+`;
+const Poster = styled.img`
+  width: 250px;
+  height: 370px;
+  border-radius: 5%/3%;
+  margin: 0.3rem;
+`;
+const MoviesDisplay = styled.div`
+  display: flex;
+  flex-flow: wrap;
+`;
+const PosterSerie = styled.img`
+  width: 250px;
+  height: 150px;
+  border-radius: 5%/3%;
+  margin: 0.3rem;
+`;
+const SeriesDisplay = styled.div`
+  display: flex;
+  flex-flow: wrap;
+`;
+const SeriesName = styled.li`
+  list-style: none;
+  font-size: 0.8rem;
+  text-align: center;
+`;
 class MARXFLIX extends Component{
 
   state = {
@@ -28,53 +56,67 @@ class MARXFLIX extends Component{
     const response = await Movies.get()
     console.log("Movies:",response.data.results)
 
+    const postermovie = response.data.results.map((item) => {
+      return{
+        ...item,
+        poster_path: `https://image.tmdb.org/t/p/w500${item.poster_path}`
+    }})
+
     this.setState({
-      movielist: response.data.results
-    })}
+      movielist: postermovie
+    })  
+    }
 
   getSeries = async () => {
     const response = await Series.get()
     console.log("Series:",response.data.results)
 
-    this.setState({
-      series: response.data.results
+    const posterserie = response.data.results.map((item) => {
+      return{
+        ...item,
+        backdrop_path: `https://image.tmdb.org/t/p/w500${item.backdrop_path}`
+      }
     })
+    this.setState({
+      series: posterserie
+    })
+    
   }
+  
 
 render(){
   return(
     <section>
       <Header/>
       <GlobalStyle />
-      <main>
+      <Container>
         <div>
           <Title>Movies</Title>
         </div>
-        <div> 
+        <MoviesDisplay> 
         {this.state.movielist.map((films, index) => (
           <ul  key={index}> 
-            <li>{films.title} </li>
-            <li>{films.vote_average}</li>
-            <li>{films.release_date}</li>
-            <li>{films.poster_path}</li>
-            <li>{films.overview}</li>
+            {/* <li>{films.title} </li>
+            <li>{films.vote_average}</li> */}
+            {/* <li>{films.overview}</li> */}
+            <Poster src={films.poster_path} alt={`poster do filme ${films.title}`}/>
           </ul>
           ))}
-        </div>
+        </MoviesDisplay>
         <div>
             <Title>Series</Title>
         </div>
-        <div>
+        <SeriesDisplay>
         {this.state.series.map((temp, index) => ( 
           <ul  key={index}> 
-            <li>{temp.name} </li>
-            <li>{temp.vote_average}</li>
-            <li>{temp.poster_path}</li>
-            <li>{temp.overview}</li>
+            {/* <li>{temp.vote_average}</li> */}
+            <PosterSerie src={temp.backdrop_path} alt={`poster da serie ${temp.title}`}/>
+            <SeriesName>{temp.name} </SeriesName>
+            {/* <li>{temp.overview}</li> */}
           </ul>
         ))}
-        </div>
-        </main>
+        </SeriesDisplay>
+        </Container>
     </section>
     )
   }

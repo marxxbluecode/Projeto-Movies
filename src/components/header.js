@@ -65,10 +65,10 @@ class Header extends Component{
             <HeaderBody>
                 <BoxIcon>
                 <Icon src={logo} alt="icon"/>
-                <Title>Movies</Title>
-                <Title>Series</Title>
-                <Title>Library</Title>
-                <Title>Watch List</Title>
+                <Title a href="#">Movies</Title>
+                <Title a href="#">Series</Title>
+                <Title a href="#">Library</Title>
+                <Title a href="#">Watch List</Title>
                 </BoxIcon>
                 <BoxBar>
                 <SearchBar  type='text' placeholder='search here'/> 

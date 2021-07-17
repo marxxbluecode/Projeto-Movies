@@ -20,6 +20,11 @@ const Poster = styled.img`
   height: 370px;
   border-radius: 5%/3%;
   margin: 0.3rem;
+  &:hover {
+    border: 4px solid #a442ed;
+    cursor: pointer;
+    transform: scale(1.02);
+}
 `;
 const MoviesDisplay = styled.div`
   display: flex;
@@ -30,6 +35,11 @@ const PosterSerie = styled.img`
   height: 150px;
   border-radius: 5%/3%;
   margin: 0.3rem;
+  &:hover {
+    border: 4px solid #a442ed;
+    cursor: pointer;
+    transform: scale(1.02);
+}
 `;
 const SeriesDisplay = styled.div`
   display: flex;

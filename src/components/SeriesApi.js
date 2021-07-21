@@ -23,7 +23,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Title = styled.h3`
   font-size: 2rem;
-  color: #f5f9fc;
+  color: #a442ed;
 `;
 
 const Container = styled.main`
@@ -50,10 +50,30 @@ const SeriesName = styled.li`
   font-size: 0.8rem;
   text-align: center;
 `;
+const BoxBar = styled.div`
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+ 
+`;
+const SearchBar = styled.input`
+    width: 65%;
+    height: 1px;
+    border-radius: 5%/70%;
+    outline: none;
+    color: #a442ed;
+    padding: 1rem;
+    position: relative;
+    top: -150px;
+    left: 550px;
+`;
 class SeriesApi extends Component{
 
   state = {
-    series: []
+    series: [],
+    filterlist: []
   }
 
   componentDidMount(){
@@ -71,9 +91,29 @@ class SeriesApi extends Component{
       }
     })
     this.setState({
-      series: posterserie
+      series: posterserie,
+      filterlist: posterserie
     })
   }
+
+  handleChange = (event) => {
+    const { series } = this.state
+    if(event.target.value === ""){
+        this.setState({
+          filterlist: series
+        });
+        return;
+    }
+    const filterItemConvert =  series.filter((item) => {
+      if(item.title.toLowerCase().includes(event.target.value.toLowerCase())){
+        return true;
+      }
+      return false;
+    })
+    this.setState({
+      filterlist: filterItemConvert
+    })
+  };
   
 render(){
   return(
@@ -82,6 +122,9 @@ render(){
       <Container>
         <div>
             <Title>Series</Title>
+            <BoxBar>
+                <SearchBar onChange={this.handleChange}  type='text' placeholder='search here'/> 
+          </BoxBar>
         </div>
         <SeriesDisplay>
         {this.state.series.map((temp, index) => ( 

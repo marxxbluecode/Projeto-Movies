@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import Movies from "./server/Movies"
 import { createGlobalStyle } from "styled-components";
 
-
 const GlobalStyle = createGlobalStyle`
   * {
     margi: 0;
@@ -19,11 +18,9 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden
   }
 `;
-
-
 const Title = styled.h3`
   font-size: 2rem;
-  color: #f5f9fc;
+  color: #a442ed;
 `;
 const Container = styled.main`
   width: 80%;
@@ -37,17 +34,52 @@ const Poster = styled.img`
   &:hover {
     border: 4px solid #a442ed;
     cursor: pointer;
-    transform: scale(1.02);
 }
+`;
+const MovieBoxInfo = styled.div`
+    display: flex;
+    flex-flow: wrap;
+    align-items: center;
+    width: 400px;
+    background-color: #29313c;
+    opacity: 0.9;
+    border-radius: 3%/6%;
+    list-style: none;
+    display: none;
+`;
+const Li = styled.li`
+      margin: 0.5rem;
+      padding: 0.5rem;
+      line-height: 110%;
 `;
 const MoviesDisplay = styled.div`
   display: flex;
   flex-flow: wrap;
 `;
+const BoxBar = styled.div`
+    width: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+ 
+`;
+const SearchBar = styled.input`
+    width: 65%;
+    height: 1px;
+    border-radius: 5%/70%;
+    outline: none;
+    color: #a442ed;
+    padding: 1rem;
+    position: relative;
+    top: -150px;
+    left: 550px;
+`;
 class MoviesApi extends Component{
 
   state = {
-    movielist: []
+    movielist: [],
+    filterlist: [],
   }
 
   componentDidMount(){
@@ -65,9 +97,29 @@ class MoviesApi extends Component{
     }})
 
     this.setState({
-      movielist: postermovie
+      movielist: postermovie,
+      filterlist: postermovie
     })  
     }
+
+    handleChange = (event) => {
+      const { movielist } = this.state
+      if(event.target.value === ""){
+          this.setState({
+            filterlist: movielist
+          });
+          return;
+      }
+      const filterItemConvert =  movielist.filter((item) => {
+        if(item.title.toLowerCase().includes(event.target.value.toLowerCase())){
+          return true;
+        }
+        return false;
+      })
+      this.setState({
+        filterlist: filterItemConvert
+      })
+    };
 
 render(){
   return(
@@ -76,14 +128,19 @@ render(){
       <Container>
         <div>
           <Title>Movies</Title>
+          <BoxBar>
+                <SearchBar onChange={this.handleChange}  type='text' placeholder='search here'/> 
+          </BoxBar>
         </div>
         <MoviesDisplay> 
         {this.state.movielist.map((films, index) => (
-          <ul  key={index}> 
-            {/* <li>{films.title} </li>
-            <li>{films.vote_average}</li> */}
-            {/* <li>{films.overview}</li> */}
-            <Poster src={films.poster_path} alt={`poster do filme ${films.title}`}/>
+          <ul key={index}> 
+            <Poster  src={films.poster_path} alt={`poster do filme ${films.title}`}/>
+          <MovieBoxInfo>
+            <Li>{films.title} </Li>
+            <Li>{films.vote_average}</Li>
+            <Li>{films.overview}</Li>
+          </MovieBoxInfo>
           </ul>
           ))}
         </MoviesDisplay>

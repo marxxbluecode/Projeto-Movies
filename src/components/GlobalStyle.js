@@ -16,7 +16,5 @@ const GlobalStyle = createGlobalStyle`
     overflow-x: hidden
   }
 `;
-// hoover: #a442ed
-// without hoover: #29313c
 export default GlobalStyle;
 

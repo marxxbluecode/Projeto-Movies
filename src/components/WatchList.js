@@ -15,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #19222b;
-    overflow-x: hidden
   }
 `;
 const Body = styled.div`

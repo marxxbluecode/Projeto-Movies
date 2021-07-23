@@ -15,11 +15,11 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #19222b;
-    overflow-x: hidden
   }
 `;
 const Body = styled.div`
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100vw;
@@ -43,7 +43,12 @@ const TitleBody = styled.h2`
       Font-size: 3rem;
       color:#fff;
 `;
-
+const Copyright = styled.p`
+    font-size:1 rem;
+    font-family:  ;
+    color: #28313c;
+    margin-top: 2rem;
+`;
 export default function App() {
     return(
         <div>
@@ -52,6 +57,7 @@ export default function App() {
               <InsideBody>
                 <TitleBody>Discover new stories...</TitleBody>
               </InsideBody>
+              <Copyright>Marxflix&copy;</Copyright>
             </Body>
         </div>
     )

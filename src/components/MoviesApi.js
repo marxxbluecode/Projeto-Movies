@@ -15,7 +15,6 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #19222b;
-    overflow-x: hidden
   }
 `;
 const Title = styled.h3`
@@ -23,34 +22,20 @@ const Title = styled.h3`
   color: #a442ed;
 `;
 const Container = styled.main`
-  width: 80%;
-  margin: 0% 0% 0% 8%;
+  width: 90%;
+  margin: 0% 0% 0% 10%;
 `;
 const Poster = styled.img`
   width: 250px;
   height: 370px;
   border-radius: 5%/3%;
-  margin: 0.3rem;
+  margin: 1.2rem;
   &:hover {
+    transform: scale(1.1);
+    transition-duration: 0.3s;
     border: 4px solid #a442ed;
     cursor: pointer;
 }
-`;
-const MovieBoxInfo = styled.div`
-    display: flex;
-    flex-flow: wrap;
-    align-items: center;
-    width: 400px;
-    background-color: #29313c;
-    opacity: 0.9;
-    border-radius: 3%/6%;
-    list-style: none;
-    display: none;
-`;
-const Li = styled.li`
-      margin: 0.5rem;
-      padding: 0.5rem;
-      line-height: 110%;
 `;
 const MoviesDisplay = styled.div`
   display: flex;
@@ -65,15 +50,53 @@ const BoxBar = styled.div`
  
 `;
 const SearchBar = styled.input`
-    width: 65%;
+    width: 57%;
     height: 1px;
     border-radius: 5%/70%;
     outline: none;
     color: #a442ed;
     padding: 1rem;
     position: relative;
-    top: -150px;
-    left: 550px;
+    top: -151px;
+    left: 467px;
+`;
+const H2 = styled.div`
+    color: #18294a;
+    font-size: 1.07rem;
+`;
+const Ul = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+ &:hover .info{
+    cursor: pointer;
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      90deg,
+      rgba(93, 12, 255, 1) 0%,
+      rgb(180, 92, 235) 100%
+    );;
+    padding: 0.7rem;
+    list-style: none;
+    border-radius: 3%/6%; 
+ }
+`;
+const Li = styled.li`
+    margin: 0.5rem;
+    font-size: 0.9rem;
+    color: #18294a;
+`;
+const MovieBoxInfo = styled.div`
+    display: none;
+    position: absolute;
+    margin-left: 30rem;
+    margin-bottom: 15rem;
+
 `;
 class MoviesApi extends Component{
 
@@ -99,8 +122,8 @@ class MoviesApi extends Component{
     this.setState({
       movielist: postermovie,
       filterlist: postermovie
-    })  
-    }
+    });
+    };
 
     handleChange = (event) => {
       const { movielist } = this.state
@@ -118,10 +141,11 @@ class MoviesApi extends Component{
       })
       this.setState({
         filterlist: filterItemConvert
-      })
+      });
     };
 
 render(){
+  const { filterlist } = this.state;
   return(
     <section>
       <GlobalStyle />
@@ -133,15 +157,15 @@ render(){
           </BoxBar>
         </div>
         <MoviesDisplay> 
-        {this.state.movielist.map((films, index) => (
-          <ul key={index}> 
+        {filterlist.map((films, index) => (
+          <Ul className='item' key={index}> 
             <Poster  src={films.poster_path} alt={`poster do filme ${films.title}`}/>
-          <MovieBoxInfo>
-            <Li>{films.title} </Li>
+          <MovieBoxInfo className='info'>
+            <Li><H2> {films.title}</H2> </Li>
             <Li>{films.vote_average}</Li>
             <Li>{films.overview}</Li>
           </MovieBoxInfo>
-          </ul>
+          </Ul>
           ))}
         </MoviesDisplay>
         </Container>

@@ -16,11 +16,8 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #19222b;
-    overflow-x: hidden
   }
 `;
-
-
 const Title = styled.h3`
   font-size: 2rem;
   color: #a442ed;
@@ -28,27 +25,33 @@ const Title = styled.h3`
 
 const Container = styled.main`
   width: 80%;
-  margin: 0% 0% 0% 8%;
+  margin: 0% 0% 0% 10%;
 `;
 const PosterSerie = styled.img`
-  width: 250px;
-  height: 150px;
-  border-radius: 5%/3%;
-  margin: 0.3rem;
+  width: 750px;
+  height: 450px;
+  border-radius: 3%/6%;
+  margin: 2.5rem;
   &:hover {
     border: 4px solid #a442ed;
     cursor: pointer;
-    transform: scale(1.02);
+    transform: scale(1.01);
+    transition-duration: 0.3s;
 }
 `;
 const SeriesDisplay = styled.div`
   display: flex;
-  flex-flow: wrap;
+  flex-direction: column;
 `;
-const SeriesName = styled.li`
+const Li = styled.li`
   list-style: none;
-  font-size: 0.8rem;
-  text-align: center;
+  font-size: 0.9rem;
+  color: #fff;
+  margin: 0.5rem;
+`;
+const H2 = styled.div`
+    color: #fff;
+    font-size: 1.07rem;
 `;
 const BoxBar = styled.div`
     width: 70%;
@@ -59,21 +62,48 @@ const BoxBar = styled.div`
  
 `;
 const SearchBar = styled.input`
-    width: 65%;
+    width: 67%;
     height: 1px;
     border-radius: 5%/70%;
     outline: none;
     color: #a442ed;
     padding: 1rem;
     position: relative;
-    top: -150px;
-    left: 550px;
+    top: -151px;
+    left: 505px;
+`;
+const Ul = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+ &:hover .info{
+    cursor: pointer;
+    width: 750px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(
+      180deg,
+      #000000 0%,
+      transparent 100%
+    );;
+    padding: 0.7rem;
+    list-style: none;
+    border-radius: 3%/6%; 
+ }
+`;
+const SerieBoxInfo = styled.div`
+    display: none;
+    position: absolute;
+    margin-top: 17rem;
 `;
 class SeriesApi extends Component{
 
   state = {
     series: [],
-    filterlist: []
+    filteredlist: []
   }
 
   componentDidMount(){
@@ -92,7 +122,7 @@ class SeriesApi extends Component{
     })
     this.setState({
       series: posterserie,
-      filterlist: posterserie
+      filteredlist: posterserie
     })
   }
 
@@ -100,7 +130,7 @@ class SeriesApi extends Component{
     const { series } = this.state
     if(event.target.value === ""){
         this.setState({
-          filterlist: series
+          filteredlist: series
         });
         return;
     }
@@ -111,11 +141,12 @@ class SeriesApi extends Component{
       return false;
     })
     this.setState({
-      filterlist: filterItemConvert
-    })
+      filteredlist: filterItemConvert
+    });
   };
   
 render(){
+  const { filteredlist } = this.state;
   return(
     <section>
       <GlobalStyle />
@@ -127,13 +158,15 @@ render(){
           </BoxBar>
         </div>
         <SeriesDisplay>
-        {this.state.series.map((temp, index) => ( 
-          <ul  key={index}> 
-            {/* <li>{temp.vote_average}</li> */}
+        {filteredlist.map((temp, index) => ( 
+          <Ul className='item' key={index}> 
             <PosterSerie src={temp.backdrop_path} alt={`poster da serie ${temp.title}`}/>
-            <SeriesName>{temp.name} </SeriesName>
-            {/* <li>{temp.overview}</li> */}
-          </ul>
+           <SerieBoxInfo className='info'>
+            <Li><H2>{temp.name}</H2></Li>
+            <Li>{temp.vote_average}</Li>
+            <Li>{temp.overview}</Li>
+           </SerieBoxInfo>
+          </Ul>
         ))}
         </SeriesDisplay>
         </Container>

@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     background-color: #19222b;
   }
 `;
-const Title = styled.h3`
+const Title = styled.h2`
   font-size: 2rem;
   color: #a442ed;
 `;
@@ -57,7 +57,7 @@ const SearchBar = styled.input`
     color: #a442ed;
     padding: 1rem;
     position: relative;
-    top: -151px;
+    top: -140px;
     left: 467px;
 `;
 const H2 = styled.div`

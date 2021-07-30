@@ -135,7 +135,7 @@ class SeriesApi extends Component{
         return;
     }
     const filterItemConvert =  series.filter((item) => {
-      if(item.title.toLowerCase().includes(event.target.value.toLowerCase())){
+      if(item.name.toLowerCase().includes(event.target.value.toLowerCase())){
         return true;
       }
       return false;

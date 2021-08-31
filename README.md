@@ -1,15 +1,14 @@
-# Cringe Culture
+# Streaming clone
 
-This project is Cringe.
+This project is a streaming website clone, kind of HBOMax and Stremio had a children.
 
-### `Cringe`
+### `Just playing with read.me`
 
 **Note: Nada não**
 
 ## Learn More
 
-To learn more about Cringeness and Cringe Culture, please visit [Too Cringe for you?](https://marxxbluecode.github.io/Hotpink-page/).
-To learn how to not be Cringe, check out the [Minecraft speedrun](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley).
+To learn more about Cringeness and Cringe Culture, please visit [Too Cringe for you?](https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley).
 
 
-### `🤣🤣🤣` Bye.
+### `🤣` Bye.

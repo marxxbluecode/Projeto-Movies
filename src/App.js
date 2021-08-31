@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
   }
   body {
     background-color: #19222b;
+    overflow-x:
   }
 `;
 const HeaderBody = styled.div`

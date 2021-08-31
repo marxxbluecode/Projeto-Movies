@@ -1,8 +1,8 @@
 # Streaming clone
 
-This project is a streaming website clone, kind of HBOMax and Stremio had a children.
+This project is a streaming website clone, kind like if HBOMax and Stremio had a child.
 
-### `Just playing with read.me`
+### `Just playing with read me`
 
 **Note: Nada não**
 
